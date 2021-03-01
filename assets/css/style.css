@@ -104,7 +104,20 @@ h6 {
 
 @media only screen and (max-width: 767px) {
     img.logo-img {
-        display: none;
+        /* display: none; */
+        max-height: 20px;
+    }
+    #header .logo img {
+        max-height: 20px;
+    }
+    #header .logo {
+        font-size: 26px;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+        font-weight: 700;
+        color: #434242;
+        letter-spacing: 0.5px;
     }
 }
 
