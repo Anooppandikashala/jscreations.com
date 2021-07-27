@@ -198,7 +198,11 @@
 
 
 var slideIndex = 1;
-showSlides(slideIndex);
+var isStoped = false;
+var slidingTime = 6000;
+populateHomeSlides();
+populatePPT();
+startSliding();
 
 // Next/previous controls
 function plusSlides(n) {
@@ -223,5 +227,55 @@ function showSlides(n) {
       dots[i].className = dots[i].className.replace(" active", "");
   }
   slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
+  //dots[slideIndex-1].className += " active";
+}
+
+function startSliding()
+{
+    slideIndex++;
+    showSlides(slideIndex);
+    if (!isStoped) {
+        setTimeout(startSliding, slidingTime);
+    }        
+}
+
+function justStopSliding() {
+    console.log("juutStopSliding");
+    isStoped = true;
+}
+function justStartSliding()
+{
+    console.log("justStartSliding");
+    isStoped = false;
+    setTimeout(startSliding, slidingTime);
+}
+
+
+
+function populateHomeSlides()
+{
+    console.log("in populateHomeSlides");
+    var numberOfImages = 37;
+    for (var i = 1; i <= numberOfImages; i++)
+    {
+        var dynamic_row = `
+        <div class="mySlides">
+        <div class="numbertext">`+i+` / `+numberOfImages+`</div>
+        <img src="assets/img/profile/`+i+`.jpg" style="width:100%">
+        
+        </div>
+        `;
+        $('#slide_show_container').append(dynamic_row);
+    }
+    
+}
+
+function populatePPT()
+{
+    var numberOfImages = 30;
+    for (var i = 1; i <= numberOfImages; i++)
+    {
+        var dynamic_row = `<a class="venobox" data-gall="slideGallery" href="assets/img/ppt/`+i+`.png"></a>`;
+        $('#slidePPT').append(dynamic_row);
+    }
 }
